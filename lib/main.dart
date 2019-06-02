@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Yugioh Life App',
       theme: ThemeData(
         primarySwatch: Colors.amber,
+        brightness: Brightness.dark
       ),
       home: MyHomePage(title: 'Yugioh Life Home Page'),
     );
@@ -41,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Hundredth = 0;
   int _p2Tenth = 0;
   int _p2Ones = 0;
+
+  final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
 
   void _setp1Thousandth(int input){
     setState(() {
@@ -92,31 +95,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addP1Life(){
     setState(() {
-      _p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones);
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString(), _p2Counter.toString()));
     });
   }
 
   void _subP1Life(){
+    int temp = -1;
     setState(() {
+      temp = _p1Counter;
       _p1Counter -= (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones);
       if(_p1Counter < 0){
         _p1Counter = 0;
       }
+      _trackedLP.add(MapEntry("Player 1: " + temp.toString() + " => " + (_p1Counter).toString(), _p2Counter.toString()));
     });
   }
 
   void _addP2Life(){
     setState(() {
-      _p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones);
+      _trackedLP.add(MapEntry(_p1Counter.toString(), "Player 2: " + _p2Counter.toString() + " => " + (_p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones)).toString()));
     });
   }
 
   void _subP2Life(){
+    int temp = -1;
     setState(() {
+      temp = _p2Counter;
       _p2Counter -= (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones);
       if (_p2Counter < 0){
         _p2Counter = 0;
       }
+      _trackedLP.add(MapEntry(_p1Counter.toString(),"Player 2: " + temp.toString() + " => " +_p2Counter.toString()));
     });
   }
 
@@ -161,20 +170,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Row(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             RotatedBox(
@@ -317,9 +312,30 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: RaisedButton(
         child: Text('Duel Log'),
         onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DuelLog()),
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) {
+                final Iterable<ListTile> tiles = _trackedLP.map(
+                    (MapEntry<String, String> entry) {
+                      return ListTile(
+                        leading: Text(entry.key),
+                        trailing: Text(entry.value),
+                      );
+                    },
+                );
+                final List<Widget> listed = ListTile.divideTiles(
+                  context: context,
+                  tiles: tiles,
+                ).toList();
+
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Text('Lifepoint Calculations'),
+                  ),
+                  body: ListView(children: listed),
+                );
+              }
+            )
           );
         },
       ),
