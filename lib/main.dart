@@ -105,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Text(
                       'Player Two LP',
+                      style: TextStyle(fontSize: 50),
                     ),
                     Text(
                       '$_p2Counter',
@@ -124,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text(
                   'Player One LP',
+                  style: TextStyle(fontSize: 50),
                 ),
                 Text(
                   '$_p1Counter',
