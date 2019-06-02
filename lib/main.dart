@@ -36,17 +36,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 8000;
+  int _p1Counter = 8000;
+  int _p2Counter = 8000;
 
-  void _incrementCounter() {
+
+  void _incrementP1Counter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _p1Counter++;
     });
+
+  }
+  void _incrementP2Counter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _p2Counter++;
+    });
+
   }
 
   @override
@@ -90,44 +104,36 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Player One LP',
+                      'Player Two LP',
                     ),
                     Text(
-                      '$_counter',
+                      '$_p2Counter',
                       style: Theme.of(context).textTheme.display1,
                     ),
-                    RaisedButton(
-                      child: Text('Duel Log'),
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => DuelLog()),
-                        );
-                      },
+                    FloatingActionButton(
+                      onPressed: _incrementP2Counter,
+                      tooltip: 'Increment',
+                      child: Icon(Icons.add),
                     ),
                   ],
                 )
             ),
-            
+
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Player 2 LP',
+                  'Player One LP',
                 ),
                 Text(
-                  '$_counter',
+                  '$_p1Counter',
                   style: Theme.of(context).textTheme.display1,
                 ),
-                RaisedButton(
-                  child: Text('Duel Log'),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DuelLog()),
-                    );
-                  },
-                ),
+                FloatingActionButton(
+                  onPressed: _incrementP1Counter,
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ), // This trailing comma makes auto-formatting nicer for build methods.
               ],
 
             ),
@@ -135,11 +141,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: RaisedButton(
+        child: Text('Duel Log'),
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DuelLog()),
+          );
+        },
+      ),
     );
   }
 }
