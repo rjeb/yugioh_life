@@ -44,11 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Tenth = 0;
   int _p2Ones = 0;
 
-  IconData _coin = Icons.copyright;
-  IconData _dice = Icons.casino;
-
-  final _random = new Random();
-
   final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
 
   void _setp1Thousandth(int input){
@@ -154,15 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _p2Counter--;
     });
-  }
-  void _flipCoin(){
-    int temp = _random.nextInt(2);
-    if (temp == 1){
-      _coin = Icons.autorenew;
-    }
-    else{
-      _coin = Icons.brightness_1;
-    }
   }
 
   @override
@@ -408,6 +394,9 @@ class _RandomEventsState extends State<RandomEvents> {
   IconData _coin = Icons.copyright;
   IconData _dice = Icons.casino;
 
+  String _coinText = "Heads";
+  String _diceText = "Five";
+
   @override
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width;
@@ -427,12 +416,31 @@ class _RandomEventsState extends State<RandomEvents> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('Coin'),
+                  Text(_coinText,
+                    style: TextStyle(fontSize: _screenHeight/8),),
                   IconButton(
-                    icon: Icon(_coin, size: 40,),
+                    icon: Icon(_coin),
+                    iconSize: _screenHeight/2,
                     onPressed: (){
                       setState(() {
                         _flipCoin();
+                      });
+                    },
+                  ),
+                ],
+              ),
+
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(_diceText,
+                    style: TextStyle(fontSize: _screenHeight/8),),
+                  IconButton(
+                    icon: Icon(_dice),
+                    iconSize: _screenHeight/2,
+                    onPressed: (){
+                      setState(() {
+                        _rollDice();
                       });
                     },
                   ),
@@ -449,11 +457,18 @@ class _RandomEventsState extends State<RandomEvents> {
   void _flipCoin(){
     int temp = _random.nextInt(2);
     if (temp == 1){
-      _coin = Icons.autorenew;
+      _coin = Icons.copyright;
+      _coinText = "Heads";
     }
     else{
       _coin = Icons.brightness_1;
+      _coinText = "Tails";
     }
+  }
+
+  void _rollDIce(){
+    int temp = _random.nextInt(6);
+    
   }
 }
 
