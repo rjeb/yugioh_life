@@ -22,15 +22,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -108,6 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _subP1Life(){
     setState(() {
       _p1Counter -= (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones);
+      if(_p1Counter < 0){
+        _p1Counter = 0;
+      }
     });
   }
 
@@ -120,16 +114,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _subP2Life(){
     setState(() {
       _p2Counter -= (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones);
+      if (_p2Counter < 0){
+        _p2Counter = 0;
+      }
     });
   }
 
   void _incrementP1Counter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _p1Counter++;
     });
   }
@@ -192,11 +184,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Text(
                       'Player Two LP',
-                      style: TextStyle(fontSize: 50),
+                      style: TextStyle(fontSize: 35),
                     ),
                     Text(
                       '$_p2Counter',
-                      style: TextStyle(fontSize: 50, color: Colors.grey),
+                      style: TextStyle(fontSize: 70, color: Colors.grey),
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               minValue: 0,
                               maxValue: 9,
                               onChanged: (value) => setState(() => _p2Thousandth = value),
-                          listViewWidth: 20,
+                          listViewWidth: 30,
                           itemExtent: 30,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -215,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Hundredth = value),
-                            listViewWidth: 20,
+                            listViewWidth: 30,
                           itemExtent: 30,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -223,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Tenth = value),
-                            listViewWidth: 20,
+                            listViewWidth: 30,
                             itemExtent: 30,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -231,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Ones = value),
-                            listViewWidth: 20,
+                            listViewWidth: 30,
                             itemExtent: 30,),
                         ]
                     ),
@@ -239,12 +231,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           RaisedButton(
-                            onPressed: _incrementP2Counter,
+                            onPressed: _addP2Life,
                             child: Icon(Icons.add),
                           ),
 
                           RaisedButton(
-                            onPressed: _decrementP2Counter,
+                            onPressed: _subP2Life,
                             child: Icon(Icons.remove),
                           ),
                         ]
@@ -258,22 +250,59 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text(
                   'Player One LP',
-                  style: TextStyle(fontSize: 50),
+                  style: TextStyle(fontSize: 35),
                 ),
                 Text(
                   '$_p1Counter',
-                  style: TextStyle(fontSize: 50, color: Colors.grey),
+                  style: TextStyle(fontSize: 70, color: Colors.grey),
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      NumberPicker.integer(
+                        infiniteLoop: true,
+                        initialValue: _p1Thousandth,
+                        minValue: 0,
+                        maxValue: 9,
+                        onChanged: (value) => setState(() => _p1Thousandth = value),
+                        listViewWidth: 30,
+                        itemExtent: 30,),
+                      NumberPicker.integer(
+                        infiniteLoop: true,
+                        initialValue: _p1Hundredth,
+                        minValue: 0,
+                        maxValue: 9,
+                        onChanged: (value) => setState(() => _p1Hundredth = value),
+                        listViewWidth: 30,
+                        itemExtent: 30,),
+                      NumberPicker.integer(
+                        infiniteLoop: true,
+                        initialValue: _p1Tenth,
+                        minValue: 0,
+                        maxValue: 9,
+                        onChanged: (value) => setState(() => _p1Tenth = value),
+                        listViewWidth: 30,
+                        itemExtent: 30,),
+                      NumberPicker.integer(
+                        infiniteLoop: true,
+                        initialValue: _p1Ones,
+                        minValue: 0,
+                        maxValue: 9,
+                        onChanged: (value) => setState(() => _p1Ones = value),
+                        listViewWidth: 30,
+                        itemExtent: 30,),
+                    ]
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RaisedButton(
-                        onPressed: _incrementP1Counter,
+                        onPressed: _addP1Life,
                         child: Icon(Icons.add),
                       ),
 
                       RaisedButton(
-                        onPressed: _decrementP1Counter,
+                        onPressed: _subP1Life,
                         child: Icon(Icons.remove),
                       ),
                     ]
