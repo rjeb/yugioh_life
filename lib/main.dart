@@ -161,11 +161,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      /* disabling appbar to preserve space
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      */
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -310,7 +312,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       persistentFooterButtons: <Widget>[
-        Text('Duel Logs'),
+        Text('Coin & Dice'),
+        IconButton(
+          icon: Icon(Icons.casino),
+        ),
+        new Text('                                                        '
+            '                                                         Duel Logs'),
         IconButton(
           icon: Icon(Icons.book),
           onPressed: (){
@@ -341,9 +348,6 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
         ),
-        new Text('                                                        '
-            '                                                         Coin & Dice'),
-        IconButton(icon: Icon(Icons.casino),),
       ],
     );
   }
