@@ -92,9 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.display1,
             ),
           RaisedButton(
-            child: Text('Begin Duel'),
+            child: Text('Duel Log'),
             onPressed: (){
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DuelLog()),
+              );
             },
           ),
           ],
@@ -105,6 +108,25 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class DuelLog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Duel Log"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {//go back to LP menu
+            Navigator.pop(context);
+          },
+          child: Text('Return'),
+        ),
+      ),
     );
   }
 }
