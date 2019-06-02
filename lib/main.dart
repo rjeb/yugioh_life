@@ -41,16 +41,88 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p1Counter = 8000;
   int _p2Counter = 8000;
 
-  int _p1Thousandth;
-  int _p1Hundredth;
-  int _p1Tenth;
-  int _p1Ones;
+  int _p1Thousandth = 1;
+  int _p1Hundredth = 0;
+  int _p1Tenth = 0;
+  int _p1Ones = 0;
 
-  int _p2Thousandth;
-  int _p2Hundredth;
-  int _p2Tenth;
-  int _p2Ones;
-  
+  int _p2Thousandth = 1;
+  int _p2Hundredth = 0;
+  int _p2Tenth = 0;
+  int _p2Ones = 0;
+
+  void _setp1Thousandth(int input){
+    setState(() {
+      _p1Thousandth = input;
+    });
+  }
+
+  void _setp1Hundredth(int input){
+    setState(() {
+      _p1Hundredth = input;
+    });
+  }
+
+  void _setp1Tenth(int input){
+    setState(() {
+      _p1Tenth = input;
+    });
+  }
+
+  void _setp1Ones(int input){
+    setState(() {
+      _p1Ones = input;
+    });
+  }
+
+  void _setp2Thousandth(int input){
+    setState(() {
+      _p1Thousandth = input;
+    });
+  }
+
+  void _setp2Hundredth(int input){
+    setState(() {
+      _p2Hundredth = input;
+    });
+  }
+
+  void _setp2Tenth(int input){
+    setState(() {
+      _p2Tenth = input;
+    });
+  }
+
+  void _setp2Ones(int input){
+    setState(() {
+      _p2Ones = input;
+    });
+  }
+
+  void _addP1Life(){
+    setState(() {
+      _p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones);
+    });
+  }
+
+  void _subP1Life(){
+    setState(() {
+      _p1Counter -= (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones);
+    });
+  }
+
+  void _addP2Life(){
+    setState(() {
+      _p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones);
+    });
+  }
+
+  void _subP2Life(){
+    setState(() {
+      _p2Counter -= (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones);
+    });
+  }
+
   void _incrementP1Counter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -129,18 +201,38 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          NumberPicker.integer(initialValue: 1,
+                          NumberPicker.integer(
+                              infiniteLoop: true,
+                              initialValue: _p2Thousandth,
                               minValue: 0,
                               maxValue: 9,
-                              onChanged: null,
+                              onChanged: (value) => setState(() => _p2Thousandth = value),
                           listViewWidth: 20,
                           itemExtent: 30,),
-                          NumberPicker.integer(initialValue: 1,
+                          NumberPicker.integer(
+                            infiniteLoop: true,
+                            initialValue: _p2Hundredth,
                             minValue: 0,
                             maxValue: 9,
-                            onChanged: null,
+                            onChanged: (value) => setState(() => _p2Hundredth = value),
                             listViewWidth: 20,
                           itemExtent: 30,),
+                          NumberPicker.integer(
+                            infiniteLoop: true,
+                            initialValue: _p2Tenth,
+                            minValue: 0,
+                            maxValue: 9,
+                            onChanged: (value) => setState(() => _p2Tenth = value),
+                            listViewWidth: 20,
+                            itemExtent: 30,),
+                          NumberPicker.integer(
+                            infiniteLoop: true,
+                            initialValue: _p2Ones,
+                            minValue: 0,
+                            maxValue: 9,
+                            onChanged: (value) => setState(() => _p2Ones = value),
+                            listViewWidth: 20,
+                            itemExtent: 30,),
                         ]
                     ),
                     Row(
