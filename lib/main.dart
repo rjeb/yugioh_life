@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -49,18 +50,21 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _p1Counter++;
     });
-
+  }
+  void _decrementP1Counter() {
+    setState(() {
+      _p1Counter--;
+    });
   }
   void _incrementP2Counter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _p2Counter++;
     });
-
+  }
+  void _decrementP2Counter() {
+    setState(() {
+      _p2Counter--;
+    });
   }
 
   @override
@@ -96,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             RotatedBox(
                 quarterTurns:2,
@@ -109,12 +113,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       '$_p2Counter',
-                      style: Theme.of(context).textTheme.display1,
+                      style: TextStyle(fontSize: 50, color: Colors.grey),
                     ),
-                    FloatingActionButton(
-                      onPressed: _incrementP2Counter,
-                      tooltip: 'Increment',
-                      child: Icon(Icons.add),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RaisedButton(
+                            onPressed: _incrementP2Counter,
+                            child: Icon(Icons.add),
+                          ),
+
+                          RaisedButton(
+                            onPressed: _decrementP2Counter,
+                            child: Icon(Icons.remove),
+                          ),
+                        ]
                     ),
                   ],
                 )
@@ -129,12 +142,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Text(
                   '$_p1Counter',
-                  style: Theme.of(context).textTheme.display1,
+                  style: TextStyle(fontSize: 50, color: Colors.grey),
                 ),
-                FloatingActionButton(
-                  onPressed: _incrementP1Counter,
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: _incrementP1Counter,
+                        child: Icon(Icons.add),
+                      ),
+
+                      RaisedButton(
+                        onPressed: _decrementP1Counter,
+                        child: Icon(Icons.remove),
+                      ),
+                    ]
                 ), // This trailing comma makes auto-formatting nicer for build methods.
               ],
 
