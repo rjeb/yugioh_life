@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addP1Life(){
     setState(() {
-      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString(), _p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString(),"Player 2: " + _p2Counter.toString()));
     });
   }
 
@@ -107,13 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
       if(_p1Counter < 0){
         _p1Counter = 0;
       }
-      _trackedLP.add(MapEntry("Player 1: " + temp.toString() + " => " + (_p1Counter).toString(), _p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + temp.toString() + " => " + (_p1Counter).toString(),"Player 2: " + _p2Counter.toString()));
     });
   }
 
   void _addP2Life(){
     setState(() {
-      _trackedLP.add(MapEntry(_p1Counter.toString(), "Player 2: " + _p2Counter.toString() + " => " + (_p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones)).toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(), "Player 2: " + _p2Counter.toString() + " => " + (_p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones)).toString()));
     });
   }
 
@@ -309,36 +309,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ),
       ),
-      floatingActionButton: RaisedButton(
-        child: Text('Duel Log'),
-        onPressed: (){
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                final Iterable<ListTile> tiles = _trackedLP.map(
-                    (MapEntry<String, String> entry) {
-                      return ListTile(
-                        leading: Text(entry.key),
-                        trailing: Text(entry.value),
+      persistentFooterButtons: <Widget>[
+        Text('Duel Logs'),
+        IconButton(
+          icon: Icon(Icons.book),
+          onPressed: (){
+            Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      final Iterable<ListTile> tiles = _trackedLP.map(
+                            (MapEntry<String, String> entry) {
+                          return ListTile(
+                            leading: Text(entry.key),
+                            trailing: Text(entry.value),
+                          );
+                        },
                       );
-                    },
-                );
-                final List<Widget> listed = ListTile.divideTiles(
-                  context: context,
-                  tiles: tiles,
-                ).toList();
+                      final List<Widget> listed = ListTile.divideTiles(
+                        context: context,
+                        tiles: tiles,
+                      ).toList();
 
-                return Scaffold(
-                  appBar: AppBar(
-                    title: Text('Lifepoint Calculations'),
-                  ),
-                  body: ListView(children: listed),
-                );
-              }
-            )
-          );
-        },
-      ),
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('Lifepoint Calculations'),
+                        ),
+                        body: ListView(children: listed),
+                      );
+                    }
+                )
+            );
+          },
+        ),
+        new Text('                                                        '
+            '                                                         Coin & Dice'),
+        IconButton(icon: Icon(Icons.casino),),
+      ],
     );
   }
 }
