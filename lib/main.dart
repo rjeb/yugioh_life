@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 
 void main() => runApp(MyApp());
@@ -40,7 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p1Counter = 8000;
   int _p2Counter = 8000;
 
+  int _p1Thousandth;
+  int _p1Hundredth;
+  int _p1Tenth;
+  int _p1Ones;
 
+  int _p2Thousandth;
+  int _p2Hundredth;
+  int _p2Tenth;
+  int _p2Ones;
+  
   void _incrementP1Counter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -70,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     setPortraitOrientation();
+    final _style = Theme.of(context).textTheme.display1;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -114,6 +125,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text(
                       '$_p2Counter',
                       style: TextStyle(fontSize: 50, color: Colors.grey),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          NumberPicker.integer(initialValue: 1,
+                              minValue: 0,
+                              maxValue: 9,
+                              onChanged: null,
+                          listViewWidth: 20,
+                          itemExtent: 30,),
+                          NumberPicker.integer(initialValue: 1,
+                            minValue: 0,
+                            maxValue: 9,
+                            onChanged: null,
+                            listViewWidth: 20,
+                          itemExtent: 30,),
+                        ]
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
