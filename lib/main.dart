@@ -224,6 +224,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             itemExtent: 30,),
                         ]
                     ),
+                    Text('   '),
+                    Text('   '),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -290,6 +292,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemExtent: 30,),
                     ]
                 ),
+                Text('   '),
+                Text('   '),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -315,9 +319,24 @@ class _MyHomePageState extends State<MyHomePage> {
         Text('Coin & Dice'),
         IconButton(
           icon: Icon(Icons.casino),
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RandomEvents()),);
+          },
         ),
-        new Text('                                                        '
-            '                                                         Duel Logs'),
+        Text('                                              Reset'),
+        IconButton(
+          icon: Icon(Icons.autorenew),
+          onPressed: (){
+            setState(() {
+              _p1Counter = 8000;
+              _p2Counter = 8000;
+              _trackedLP.clear();
+            });
+          },
+        ),
+        Text('                                        Duel Logs'),
         IconButton(
           icon: Icon(Icons.book),
           onPressed: (){
@@ -353,12 +372,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class DuelLog extends StatelessWidget {
+class RandomEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Duel Log"),
+        title: Text("Coin and Dice"),
       ),
       body: Center(
         child: RaisedButton(
