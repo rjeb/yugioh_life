@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (_p2Counter < 0){
         _p2Counter = 0;
       }
-      _trackedLP.add(MapEntry(_p1Counter.toString(),"Player 2: " + temp.toString() + " => " +_p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(),"Player 2: " + temp.toString() + " => " +_p2Counter.toString()));
     });
   }
 
@@ -154,6 +154,15 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _p2Counter--;
     });
+  }
+  void _flipCoin(){
+    int temp = _random.nextInt(2);
+    if (temp == 1){
+      _coin = Icons.autorenew;
+    }
+    else{
+      _coin = Icons.brightness_1;
+    }
   }
 
   @override
@@ -333,47 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               icon: Icon(Icons.casino),
               onPressed: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) {
-                          return Scaffold(
-                            appBar: AppBar(
-                              title: Text('Coin and Dice'),
-                            ),
-                            body: Center(
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Text('Coin'),
-                                        IconButton(
-                                          icon: Icon(_coin, size: 100,),
-                                          onPressed: (){
-                                            if (_random.nextInt(2) == 1){
-                                              setState(() {
-                                                _coin = Icons.autorenew;
-                                              });
-                                            }
-                                            else{
-                                              setState(() {
-                                                _coin = Icons.brightness_1;
-                                              });
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
-
-
-                                  ]
-                              ),
-                            ),
-                          );
-                        }
-                    )
-                );
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RandomEvents()));
               },
             ),
             Text('Reset'),
@@ -425,20 +394,66 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class RandomEvents extends StatelessWidget {
+class RandomEvents extends StatefulWidget {
+  RandomEvents({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _RandomEventsState createState() => _RandomEventsState();
+}
+
+class _RandomEventsState extends State<RandomEvents> {
+  final _random = new Random();
+  IconData _coin = Icons.copyright;
+  IconData _dice = Icons.casino;
+
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
+    double _screenHeight = MediaQuery.of(context).size.height;
+
+    setPortraitOrientation();
+    final _style = Theme.of(context).textTheme.display1;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Coin and Dice"),
+        title: Text('Coin and Dice'),
       ),
       body: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text('Coin'),
+                  IconButton(
+                    icon: Icon(_coin, size: 40,),
+                    onPressed: (){
+                      setState(() {
+                        _flipCoin();
+                      });
+                    },
+                  ),
+                ],
+              ),
 
+
+            ]
         ),
       ),
     );
+  }
+
+  void _flipCoin(){
+    int temp = _random.nextInt(2);
+    if (temp == 1){
+      _coin = Icons.autorenew;
+    }
+    else{
+      _coin = Icons.brightness_1;
+    }
   }
 }
 
