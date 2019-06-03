@@ -403,7 +403,7 @@ class RandomEvents extends StatefulWidget {
 
 class _RandomEventsState extends State<RandomEvents> {
   final _random = new Random();
-  IconData _coin = Icons.copyright;
+  IconData _coin = Icons.monetization_on;
   IconData _dice = Icons.casino;
 
   String _coinText = "Heads";
@@ -472,11 +472,11 @@ class _RandomEventsState extends State<RandomEvents> {
   void _flipCoin(){
     int temp = _random.nextInt(2);
     if (temp == 1){
-      _coin = Icons.copyright;
+      _coin = Icons.monetization_on;
       _coinText = "Heads";
     }
     else{
-      _coin = Icons.brightness_1;
+      _coin = Icons.cancel;
       _coinText = "Tails";
     }
   }
