@@ -34,12 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p1Counter = 8000;
   int _p2Counter = 8000;
 
-  int _p1Thousandth = 1;
+  int _p1Thousandth = 0;
   int _p1Hundredth = 0;
   int _p1Tenth = 0;
   int _p1Ones = 0;
 
-  int _p2Thousandth = 1;
+  int _p2Thousandth = 0;
   int _p2Hundredth = 0;
   int _p2Tenth = 0;
   int _p2Ones = 0;
@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addP1Life(){
     setState(() {
-      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString(),"Player 2: " + _p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString() + "               (+" + (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones).toString() + ")", "Player 2: " + _p2Counter.toString()));
     });
   }
 
@@ -108,13 +108,13 @@ class _MyHomePageState extends State<MyHomePage> {
       if(_p1Counter < 0){
         _p1Counter = 0;
       }
-      _trackedLP.add(MapEntry("Player 1: " + temp.toString() + " => " + (_p1Counter).toString(),"Player 2: " + _p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + temp.toString() + " => " + (_p1Counter).toString()  + "               (-" + (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones).toString()+ ")" , "Player 2: " + _p2Counter.toString()));
     });
   }
 
   void _addP2Life(){
     setState(() {
-      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(), "Player 2: " + _p2Counter.toString() + " => " + (_p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones)).toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(), "(+" + (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones).toString() + ")               " + "Player 2: " + _p2Counter.toString() + " => " + (_p2Counter += (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones)).toString()));
     });
   }
 
@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (_p2Counter < 0){
         _p2Counter = 0;
       }
-      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(),"Player 2: " + temp.toString() + " => " +_p2Counter.toString()));
+      _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString(), "(-" + (_p2Thousandth*1000 + _p2Hundredth *100 + _p2Tenth *10 + _p2Ones).toString() + ")               " + "Player 2: " + temp.toString() + " => " +_p2Counter.toString()));
     });
   }
 
@@ -234,12 +234,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          RaisedButton(
+                          MaterialButton(
+                            color: Colors.orangeAccent,
+                            highlightColor: Colors.amberAccent,
+                            minWidth: _screenWidth/5,
                             onPressed: _addP2Life,
                             child: Icon(Icons.add),
                           ),
 
-                          RaisedButton(
+                          MaterialButton(
+                            color: Colors.orangeAccent,
+                            highlightColor: Colors.amberAccent,
+                            minWidth: _screenWidth/5,
                             onPressed: _subP2Life,
                             child: Icon(Icons.remove),
                           ),
@@ -302,12 +308,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      RaisedButton(
+                      MaterialButton(
+                        color: Colors.orangeAccent,
+                        highlightColor: Colors.amberAccent,
+                        minWidth: _screenWidth/5,
                         onPressed: _addP1Life,
                         child: Icon(Icons.add),
                       ),
 
-                      RaisedButton(
+                      MaterialButton(
+                        color: Colors.orangeAccent,
+                        highlightColor: Colors.amberAccent,
+                        minWidth: _screenWidth/5,
                         onPressed: _subP1Life,
                         child: Icon(Icons.remove),
                       ),
@@ -397,6 +409,9 @@ class _RandomEventsState extends State<RandomEvents> {
   String _coinText = "Heads";
   String _diceText = "Five";
 
+  var _diceIcons = [Icons.filter_1, Icons.filter_2, Icons.filter_3, Icons.filter_4, Icons.filter_5, Icons.filter_6];
+  var _diceStrings = ["One", "Two", "Three", "Four", "Five", "Six"];
+
   @override
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width;
@@ -466,9 +481,10 @@ class _RandomEventsState extends State<RandomEvents> {
     }
   }
 
-  void _rollDIce(){
+  void _rollDice(){
     int temp = _random.nextInt(6);
-    
+    _dice = _diceIcons.elementAt(temp);
+    _diceText = _diceStrings.elementAt(temp);
   }
 }
 
