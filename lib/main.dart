@@ -8,7 +8,6 @@ import 'fonts/dice_cons_icons.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,9 +31,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //LifePoint ariables
   int _p1Counter = 8000;
   int _p2Counter = 8000;
 
+
+  //variables to track the number scroll wheels
   int _p1Thousandth = 0;
   int _p1Hundredth = 0;
   int _p1Tenth = 0;
@@ -45,8 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Tenth = 0;
   int _p2Ones = 0;
 
+  //A list of a string pair tracks changes in LP, will be displayed in seperate page
   final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
 
+  //setters
   void _setp1Thousandth(int input){
     setState(() {
       _p1Thousandth = input;
@@ -95,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  //arithmatic functions change LP variables and also adds an element to trackedLP list
   void _addP1Life(){
     setState(() {
       _trackedLP.add(MapEntry("Player 1: " + _p1Counter.toString() + " => " + (_p1Counter += (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones)).toString() + "               (+" + (_p1Thousandth*1000 + _p1Hundredth *100 + _p1Tenth *10 + _p1Ones).toString() + ")", "Player 2: " + _p2Counter.toString()));
@@ -131,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  //unused functions
   void _incrementP1Counter() {
     setState(() {
       _p1Counter++;
@@ -155,19 +161,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
+    //screenWidth and screenHeight to have adaptive size for text & elements
     double _screenWidth = MediaQuery.of(context).size.width;
     double _screenHeight = MediaQuery.of(context).size.height;
 
     setPortraitOrientation();
     final _style = Theme.of(context).textTheme.display1;
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return Scaffold(
-      /* disabling appbar to preserve space
+      /* disabled appbar to preserve space, uncomment to add back
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -175,11 +177,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       */
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            //Player 2's side is rotated to simultaneous play is possible
+            //P2 and P1 always see the screen on their right side
             RotatedBox(
                 quarterTurns:2,
                 child: new Column(
@@ -196,6 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          //example of scrollwheels to allow plays to select amount of LP to change
+                          //each digit is selected seperately
                           NumberPicker.integer(
                               infiniteLoop: true,
                               initialValue: _p2Thousandth,
@@ -230,6 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             itemExtent: _screenHeight/14,),
                         ]
                     ),
+                    //Empty text elements to visually seperate buttons from other elements
                     Text('   '),
                     Text('   '),
                     Row(
@@ -239,6 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.orangeAccent,
                             highlightColor: Colors.amberAccent,
                             minWidth: _screenWidth/5,
+                            //onPressed, button adds based on current state of number wheels
                             onPressed: _addP2Life,
                             child: Icon(Icons.add),
                           ),
@@ -304,6 +310,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemExtent: _screenHeight/14,),
                     ]
                 ),
+                //Empty text elements to visually seperate buttons from other elements
                 Text('   '),
                 Text('   '),
                 Row(
@@ -338,6 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text('Coin & Dice'),
+            //sends to RandomEvents widget for coin and dice
             IconButton(
               icon: Icon(Icons.casino),
               onPressed: (){
@@ -345,6 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             Text('Reset'),
+            //Reset button resets players LP and clears all elements in TrackedLP List
             IconButton(
               icon: Icon(Icons.autorenew),
               onPressed: (){
@@ -356,6 +365,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             Text('Duel Logs'),
+            //creates a widget to display tracked LP history
             IconButton(
               icon: Icon(Icons.book),
               onPressed: (){
@@ -393,6 +403,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//RandomEvents widget handles dice and coins
 class RandomEvents extends StatefulWidget {
   RandomEvents({Key key, this.title}) : super(key: key);
 
@@ -404,12 +415,15 @@ class RandomEvents extends StatefulWidget {
 
 class _RandomEventsState extends State<RandomEvents> {
   final _random = new Random();
+
+  //initial settings for coin and dice
   IconData _coin = Icons.monetization_on;
   IconData _dice = DiceCons.dice1;
 
   String _coinText = "Heads";
   String _diceText = "One";
 
+  //Array of possible icons and Strings for dice
   var _diceIcons = [DiceCons.dice1, DiceCons.dice2, DiceCons.dice3, DiceCons.dice4, DiceCons.dice5, DiceCons.dice6];
   var _diceStrings = ["One", "Two", "Three", "Four", "Five", "Six"];
 
@@ -470,6 +484,7 @@ class _RandomEventsState extends State<RandomEvents> {
     );
   }
 
+  //sets CoinText and coinIcon based on randomly generated number (0-1)
   void _flipCoin(){
     int temp = _random.nextInt(2);
     print(temp);
@@ -483,6 +498,7 @@ class _RandomEventsState extends State<RandomEvents> {
     }
   }
 
+  //sets DiceText and DiceIcon based on randomly generated number (0-5)
   void _rollDice(){
     int temp = _random.nextInt(6);
     _dice = _diceIcons.elementAt(temp);
@@ -490,6 +506,7 @@ class _RandomEventsState extends State<RandomEvents> {
   }
 }
 
+//sets app to portrait orientation
 void setPortraitOrientation(){
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
@@ -497,6 +514,7 @@ void setPortraitOrientation(){
   ]);
 }
 
+//sets app to normal orientation
 void setNormalOrientation(){
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
