@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               minValue: 0,
                               maxValue: 9,
                               onChanged: (value) => setState(() => _p2Thousandth = value),
-                          listViewWidth: 45,
+                          listViewWidth: _screenWidth/15,
                           itemExtent: _screenHeight/14,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -209,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Hundredth = value),
-                            listViewWidth: 45,
+                            listViewWidth: _screenWidth/15,
                           itemExtent: _screenHeight/14,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -217,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Tenth = value),
-                            listViewWidth: 45,
+                            listViewWidth: _screenWidth/15,
                             itemExtent: _screenHeight/14,),
                           NumberPicker.integer(
                             infiniteLoop: true,
@@ -225,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Ones = value),
-                            listViewWidth: 45,
+                            listViewWidth: _screenWidth/15,
                             itemExtent: _screenHeight/14,),
                         ]
                     ),
@@ -275,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Thousandth = value),
-                        listViewWidth: 45,
+                        listViewWidth: _screenWidth/15,
                         itemExtent: _screenHeight/14,),
                       NumberPicker.integer(
                         infiniteLoop: true,
@@ -283,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Hundredth = value),
-                        listViewWidth: 45,
+                        listViewWidth: _screenWidth/15,
                         itemExtent: _screenHeight/14,),
                       NumberPicker.integer(
                         infiniteLoop: true,
@@ -291,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Tenth = value),
-                        listViewWidth: 45,
+                        listViewWidth: _screenWidth/15,
                         itemExtent: _screenHeight/14,),
                       NumberPicker.integer(
                         infiniteLoop: true,
@@ -299,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Ones = value),
-                        listViewWidth: 45,
+                        listViewWidth: _screenWidth/15,
                         itemExtent: _screenHeight/14,),
                     ]
                 ),
