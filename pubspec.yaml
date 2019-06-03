@@ -38,7 +38,10 @@ flutter_icons:
   adaptive_icon_background: "assets/launcher/background.png"
   adaptive_icon_foreground: "assets/launcher/foreground.png"
 
-
+///   fonts:
+///    - family:  DiceCons
+///      fonts:
+///       - asset: fonts/DiceCons.ttf
 
 
 # For information on the generic Dart part of this file, see the
@@ -52,6 +55,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+   - family:  DiceCons
+     fonts:
+      - asset: assets/fonts/DiceCons.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

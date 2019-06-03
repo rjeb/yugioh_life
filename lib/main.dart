@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'dart:math';
+import 'fonts/dice_cons_icons.dart';
 
 
 void main() => runApp(MyApp());
@@ -404,12 +405,12 @@ class RandomEvents extends StatefulWidget {
 class _RandomEventsState extends State<RandomEvents> {
   final _random = new Random();
   IconData _coin = Icons.monetization_on;
-  IconData _dice = Icons.casino;
+  IconData _dice = DiceCons.dice1;
 
   String _coinText = "Heads";
-  String _diceText = "Five";
+  String _diceText = "One";
 
-  var _diceIcons = [Icons.filter_1, Icons.filter_2, Icons.filter_3, Icons.filter_4, Icons.filter_5, Icons.filter_6];
+  var _diceIcons = [DiceCons.dice1, DiceCons.dice2, DiceCons.dice3, DiceCons.dice4, DiceCons.dice5, DiceCons.dice6];
   var _diceStrings = ["One", "Two", "Three", "Four", "Five", "Six"];
 
   @override
@@ -471,6 +472,7 @@ class _RandomEventsState extends State<RandomEvents> {
 
   void _flipCoin(){
     int temp = _random.nextInt(2);
+    print(temp);
     if (temp == 1){
       _coin = Icons.monetization_on;
       _coinText = "Heads";
