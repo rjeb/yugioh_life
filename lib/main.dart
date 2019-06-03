@@ -189,11 +189,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Text(
                       'Player Two LP',
-                      style: TextStyle(fontSize: _screenHeight/10),
+                      style: TextStyle(fontSize: _screenHeight/11),
                     ),
                     Text(
                       '$_p2Counter',
-                      style: TextStyle(fontSize: _screenHeight/5, color: Colors.grey),
+                      style: TextStyle(fontSize: _screenHeight/6, color: Colors.grey),
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -236,7 +236,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     //Empty text elements to visually seperate buttons from other elements
                     Text('   '),
-                    Text('   '),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -267,11 +266,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text(
                   'Player One LP',
-                  style: TextStyle(fontSize: _screenHeight/10),
+                  style: TextStyle(fontSize: _screenHeight/11),
                 ),
                 Text(
                   '$_p1Counter',
-                  style: TextStyle(fontSize: _screenHeight/5, color: Colors.grey),
+                  style: TextStyle(fontSize: _screenHeight/6, color: Colors.grey),
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -311,7 +310,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]
                 ),
                 //Empty text elements to visually seperate buttons from other elements
-                Text('   '),
                 Text('   '),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -450,7 +448,7 @@ class _RandomEventsState extends State<RandomEvents> {
                     style: TextStyle(fontSize: _screenHeight/8),),
                   IconButton(
                     icon: Icon(_coin),
-                    iconSize: _screenHeight/2,
+                    iconSize: _screenHeight/3,
                     onPressed: (){
                       setState(() {
                         _flipCoin();
@@ -467,7 +465,7 @@ class _RandomEventsState extends State<RandomEvents> {
                     style: TextStyle(fontSize: _screenHeight/8),),
                   IconButton(
                     icon: Icon(_dice),
-                    iconSize: _screenHeight/2,
+                    iconSize: _screenHeight/3,
                     onPressed: (){
                       setState(() {
                         _rollDice();
