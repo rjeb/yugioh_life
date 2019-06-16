@@ -47,6 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Tenth = 0;
   int _p2Ones = 0;
 
+  //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
+  var _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  var _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
+
   //A list of a string pair tracks changes in LP, will be displayed in seperate page
   final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
 
@@ -257,6 +261,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ]
                     ),
+                    Text(' '),
+                    Text(' '),
                   ],
                 )
             ),
@@ -264,6 +270,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Text(' '),
+                Text(' '),
                 Text(
                   'Player One LP',
                   style: TextStyle(fontSize: _screenHeight/11),
