@@ -7,6 +7,9 @@ import 'fonts/dice_cons_icons.dart';
 
 void main() => runApp(MyApp());
 
+List<int> _p1Counter = [0,0,0,0,0,0,0,0,0,0,0,0];
+List<int> _p2Counter = [0,0,0,0,0,0,0,0,0,0,0,0];
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -46,10 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Hundredth = 0;
   int _p2Tenth = 0;
   int _p2Ones = 0;
-
-  //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
-  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
-  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   //A list of a string pair tracks changes in LP, will be displayed in seperate page
   final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
@@ -430,8 +429,8 @@ class CounterPage extends StatefulWidget {
 class _CounterPageState extends State<CounterPage> {
 
   //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
-  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
-  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p1Counters = _p1Counter;
+  List<int> _p2Counters = _p2Counter;
 
   @override
   Widget build(BuildContext context) {
