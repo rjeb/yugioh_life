@@ -459,9 +459,29 @@ class _CounterPageState extends State<CounterPage> {
                             width: _screenWidth/12,
                             height: _screenHeight/6.5,
                             child: Center(
-                              child: Text(_p1Counters.elementAt(0).toString()),
+                              child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(0).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[0]--;
+                                    });
+                                },
+                              ),
                             ),
-                            color: Colors.teal,
+                            color: Colors.transparent,
                           );
                         },
                         onWillAccept: (data){
@@ -473,7 +493,9 @@ class _CounterPageState extends State<CounterPage> {
                           }
                         },
                         onAccept: (data) {
-                          print(Text("Hello"));
+                          setState(() {
+                            _p1Counters[0]++;
+                          });
                         }
                       ),
                       Container(
