@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _p2Ones = 0;
 
   //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
-  var _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
-  var _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   //A list of a string pair tracks changes in LP, will be displayed in seperate page
   final List<MapEntry<String, String>> _trackedLP = List<MapEntry<String, String>>();
@@ -430,8 +430,8 @@ class CounterPage extends StatefulWidget {
 class _CounterPageState extends State<CounterPage> {
 
   //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
-  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
-  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   @override
   Widget build(BuildContext context) {
@@ -498,37 +498,189 @@ class _CounterPageState extends State<CounterPage> {
                           });
                         }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(1).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[1]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[1]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(2).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(2).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[2]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[2]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(3).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(3).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[3]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[3]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(4).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(4).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[4]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[4]++;
+                            });
+                          }
                       ),
                     ],
                   ),
@@ -536,46 +688,235 @@ class _CounterPageState extends State<CounterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(0).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(5).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[5]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[5]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(6).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[6]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[6]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(2).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(7).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[7]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[7]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(3).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(8).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[8]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[8]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(4).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(9).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[9]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[9]++;
+                            });
+                          }
                       ),
                     ],
                   ),
@@ -583,21 +924,97 @@ class _CounterPageState extends State<CounterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        width: _screenWidth/14,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.blueGrey,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/10,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(10).toString()),
+                                    ),
+                                    color: Colors.blueGrey,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[10]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[10]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(0).toString()),
-                        ),
-                        color: Colors.grey,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p1Counters.elementAt(11).toString()),
+                                    ),
+                                    color: Colors.grey,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p1Counters[11]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p1Counters[11]++;
+                            });
+                          }
                       ),
                       Container(
                         width: _screenWidth/12,
@@ -618,21 +1035,97 @@ class _CounterPageState extends State<CounterPage> {
                         ),
                         color: Colors.transparent,
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.grey,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(11).toString()),
+                                    ),
+                                    color: Colors.grey,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[11]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[11]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/14,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.blueGrey,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/10,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(10).toString()),
+                                    ),
+                                    color: Colors.blueGrey,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[10]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[10]++;
+                            });
+                          }
                       ),
 
                     ],
@@ -641,45 +1134,235 @@ class _CounterPageState extends State<CounterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(0).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(9).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[9]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[9]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(8).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[8]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[8]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(2).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(7).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[7]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[7]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(3).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(6).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[6]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[6]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(4).toString()),
-                        ),
-                        color: Colors.orangeAccent,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(5).toString()),
+                                    ),
+                                    color: Colors.orangeAccent,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[5]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[5]++;
+                            });
+                          }
                       ),
                     ],
                   ),
@@ -687,45 +1370,235 @@ class _CounterPageState extends State<CounterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(0).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(4).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[4]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[4]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(1).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(3).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[3]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[3]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(2).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(2).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[2]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[2]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(3).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(1).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[1]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[1]++;
+                            });
+                          }
                       ),
-                      Container(
-                        width: _screenWidth/12,
-                        height: _screenHeight/6.5,
-                        child: Center(
-                          child: Text(_p1Counters.elementAt(4).toString()),
-                        ),
-                        color: Colors.teal,
+                      DragTarget(
+                          builder:
+                              (context, List<int> candidateData, rejectedData) {
+                            return Container(
+                              width: _screenWidth/12,
+                              height: _screenHeight/6.5,
+                              child: Center(
+                                child: Draggable(
+                                  data: 1,
+                                  child: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Center(
+                                      child: Text(_p2Counters.elementAt(0).toString()),
+                                    ),
+                                    color: Colors.teal,
+                                  ),
+                                  feedback: Container(
+                                    width: _screenWidth/12,
+                                    height: _screenHeight/6.5,
+                                    child: Icon(Icons.add_circle_outline),
+                                  ),
+                                  onDragStarted: (){
+                                    setState(() {
+                                      _p2Counters[0]--;
+                                    });
+                                  },
+                                ),
+                              ),
+                              color: Colors.transparent,
+                            );
+                          },
+                          onWillAccept: (data){
+                            if(data == 1){
+                              return true;
+                            }
+                            else{
+
+                            }
+                          },
+                          onAccept: (data) {
+                            setState(() {
+                              _p2Counters[0]++;
+                            });
+                          }
                       ),
                     ],
                   ),
