@@ -417,6 +417,47 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//counter page for tracking counters
+class CounterPage extends StatefulWidget {
+  CounterPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _CounterPageState createState() => _CounterPageState();
+}
+
+class _CounterPageState extends State<CounterPage> {
+
+  //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
+  var _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  var _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
+
+  @override
+  Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
+    double _screenHeight = MediaQuery.of(context).size.height;
+
+    setPortraitOrientation();
+    final _style = Theme.of(context).textTheme.display1;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Coin and Dice'),
+      ),
+      body: Center(
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+            ]
+        ),
+      ),
+    );
+  }
+
+}
+
+
 //RandomEvents widget handles dice and coins
 class RandomEvents extends StatefulWidget {
   RandomEvents({Key key, this.title}) : super(key: key);
@@ -500,9 +541,9 @@ class _RandomEventsState extends State<RandomEvents> {
 
   //sets CoinText and coinIcon based on randomly generated number (0-1)
   void _flipCoin(){
-    int temp = _random.nextInt(2);
+    int temp = _random.nextInt(100);
     print(temp);
-    if (temp == 1){
+    if (temp%2 == 0){
       _coin = Icons.monetization_on;
       _coinText = "Heads";
     }
