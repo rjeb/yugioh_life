@@ -210,32 +210,32 @@ class _MyHomePageState extends State<MyHomePage> {
                               minValue: 0,
                               maxValue: 9,
                               onChanged: (value) => setState(() => _p2Thousandth = value),
-                          listViewWidth: _screenWidth/15,
-                          itemExtent: _screenHeight/14,),
+                          listViewWidth: _screenWidth/12,
+                          itemExtent: _screenHeight/12,),
                           NumberPicker.integer(
                             infiniteLoop: true,
                             initialValue: _p2Hundredth,
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Hundredth = value),
-                            listViewWidth: _screenWidth/15,
-                          itemExtent: _screenHeight/14,),
+                            listViewWidth: _screenWidth/12,
+                          itemExtent: _screenHeight/12,),
                           NumberPicker.integer(
                             infiniteLoop: true,
                             initialValue: _p2Tenth,
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Tenth = value),
-                            listViewWidth: _screenWidth/15,
-                            itemExtent: _screenHeight/14,),
+                            listViewWidth: _screenWidth/12,
+                            itemExtent: _screenHeight/12,),
                           NumberPicker.integer(
                             infiniteLoop: true,
                             initialValue: _p2Ones,
                             minValue: 0,
                             maxValue: 9,
                             onChanged: (value) => setState(() => _p2Ones = value),
-                            listViewWidth: _screenWidth/15,
-                            itemExtent: _screenHeight/14,),
+                            listViewWidth: _screenWidth/12,
+                            itemExtent: _screenHeight/12,),
                         ]
                     ),
                     //Empty text elements to visually seperate buttons from other elements
@@ -289,32 +289,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Thousandth = value),
-                        listViewWidth: _screenWidth/15,
-                        itemExtent: _screenHeight/14,),
+                        listViewWidth: _screenWidth/12,
+                        itemExtent: _screenHeight/12,),
                       NumberPicker.integer(
                         infiniteLoop: true,
                         initialValue: _p1Hundredth,
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Hundredth = value),
-                        listViewWidth: _screenWidth/15,
-                        itemExtent: _screenHeight/14,),
+                        listViewWidth: _screenWidth/12,
+                        itemExtent: _screenHeight/12,),
                       NumberPicker.integer(
                         infiniteLoop: true,
                         initialValue: _p1Tenth,
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Tenth = value),
-                        listViewWidth: _screenWidth/15,
-                        itemExtent: _screenHeight/14,),
+                        listViewWidth: _screenWidth/12,
+                        itemExtent: _screenHeight/12,),
                       NumberPicker.integer(
                         infiniteLoop: true,
                         initialValue: _p1Ones,
                         minValue: 0,
                         maxValue: 9,
                         onChanged: (value) => setState(() => _p1Ones = value),
-                        listViewWidth: _screenWidth/15,
-                        itemExtent: _screenHeight/14,),
+                        listViewWidth: _screenWidth/12,
+                        itemExtent: _screenHeight/12,),
                     ]
                 ),
                 //Empty text elements to visually seperate buttons from other elements
@@ -350,6 +350,14 @@ class _MyHomePageState extends State<MyHomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            Text('Counters'),
+            //Sends to a page that counters the counters on certain field zones
+            IconButton(
+              icon: Icon(Icons.arrow_drop_down_circle),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RandomEvents()));
+              },
+            ),
             Text('Coin & Dice'),
             //sends to RandomEvents widget for coin and dice
             IconButton(
