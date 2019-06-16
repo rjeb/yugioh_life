@@ -355,7 +355,7 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               icon: Icon(Icons.arrow_drop_down_circle),
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => RandomEvents()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CounterPage()));
               },
             ),
             Text('Coin & Dice'),
@@ -430,8 +430,8 @@ class CounterPage extends StatefulWidget {
 class _CounterPageState extends State<CounterPage> {
 
   //variables will track 5 monster, 5 s/t zones, and 1 field spell zone for ea player
-  var _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
-  var _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p1Counters = [0,0,0,0,0,0,0,0,0,0,0];
+  List<int> _p2Counters = [0,0,0,0,0,0,0,0,0,0,0];
 
   @override
   Widget build(BuildContext context) {
@@ -442,13 +442,273 @@ class _CounterPageState extends State<CounterPage> {
     final _style = Theme.of(context).textTheme.display1;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Coin and Dice'),
-      ),
       body: Center(
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Text(''),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      DragTarget(
+                        builder:
+                            (context, List<int> candidateData, rejectedData) {
+                          return Container(
+                            width: _screenWidth/12,
+                            height: _screenHeight/6.5,
+                            child: Center(
+                              child: Text(_p1Counters.elementAt(0).toString()),
+                            ),
+                            color: Colors.teal,
+                          );
+                        },
+                        onWillAccept: (data){
+                          if(data == 1){
+                            return true;
+                          }
+                          else{
+
+                          }
+                        },
+                        onAccept: (data) {
+                          print(Text("Hello"));
+                        }
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(2).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(3).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(4).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                    ],
+                  ),
+                  Text(''),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(0).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(2).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(3).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(4).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                    ],
+                  ),
+                  Text(''),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Container(
+                        width: _screenWidth/14,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.blueGrey,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(0).toString()),
+                        ),
+                        color: Colors.grey,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Draggable(
+                              data: 1,
+                              child: Container(
+                                width: _screenWidth/12,
+                                height: _screenHeight/6.5,
+                                child: Icon(Icons.add_circle_outline),
+                              ),
+                              feedback: Container(
+                                width: _screenWidth/12,
+                                height: _screenHeight/6.5,
+                                child: Icon(Icons.add_circle_outline),
+                              )),
+                        ),
+                        color: Colors.transparent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.grey,
+                      ),
+                      Container(
+                        width: _screenWidth/14,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.blueGrey,
+                      ),
+
+                    ],
+                  ),
+                  Text(''),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(0).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(2).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(3).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(4).toString()),
+                        ),
+                        color: Colors.orangeAccent,
+                      ),
+                    ],
+                  ),
+                  Text(''),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(0).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(1).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(2).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(3).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                      Container(
+                        width: _screenWidth/12,
+                        height: _screenHeight/6.5,
+                        child: Center(
+                          child: Text(_p1Counters.elementAt(4).toString()),
+                        ),
+                        color: Colors.teal,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ]
         ),
       ),
